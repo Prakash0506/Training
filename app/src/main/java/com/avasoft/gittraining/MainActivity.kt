@@ -23,6 +23,10 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
 //                    Counter conflict
+
+//                    kjbcdhfbv
+//                    kdnsbcgadev
+//                    bcjwhdv
                 }
             }
         }
