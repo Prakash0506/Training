@@ -1,9 +1,165 @@
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
+import androidx.compose.material.Icon
+import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.OffsetMapping
+import androidx.compose.ui.text.input.TransformedText
+import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.gitapplication.pages.HomeScreen.HomeScreenVM
 
 @Composable
 
 fun HomeScreen(navController: NavHostController, vm:HomeScreenVM) {
+    LaunchedEffect(key1 = Unit, block = {
+//        vm.()
+    })
 
-}
+
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+
+        Text(text = "News App", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+
+        Button(onClick = { /*TODO*/ }) {
+            Text(text = "Add News", color = Color.White,
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = Color.Green))
+        }
+
+        Row(
+            horizontalArrangement = Arrangement.SpaceEvenly
+                ){
+
+            Button(onClick = { /*TODO*/ },
+            modifier = Modifier.background(color =Color.LightGray )) {
+                Text(text = "Filter by Trending", color = Color.Gray
+                )
+            }
+
+            Button(onClick = { /*TODO*/ },
+                modifier = Modifier.background(color =Color.LightGray )) {
+                Text(text = "Filter by Local", color = Color.Gray
+                )
+            }
+
+            Button(onClick = { /*TODO*/ },
+                modifier = Modifier.background(color =Color.LightGray )) {
+                Text(text = "Filter by Sports", color = Color.Gray
+                )
+            }
+
+            Button(onClick = { /*TODO*/ },
+                modifier = Modifier.background(color =Color.LightGray )) {
+                Text(text = "Clear Filters", color = Color.Gray
+                )
+            }
+        }
+
+
+
+
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 10.dp, end = 10.dp)
+
+        ) {
+            items(12) {news->
+
+
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .clip(RoundedCornerShape(10.dp))
+                        .border(
+                            width = 1.dp,
+                            color = Color.Black,
+                            shape = RoundedCornerShape(10.dp)
+                        )
+                        .fillMaxWidth()
+//                        .background(
+////                            if (isCredentialExpired(it.expiryDate))
+////                                Color.Red
+////                            else
+////                                Color.Green
+//                        )
+                        .padding(15.dp)
+                ) {
+
+
+                    Column() {
+                        Text(text = , Modifier.padding(top = 10.dp))
+                        Text(text = it.emailId)
+                        Text(text = it.url)
+                        val text =  TransformedText(
+                            AnnotatedString(
+                                "#".repeat(it.password.length)),
+                            OffsetMapping.Identity
+                        )
+
+                        Text( buildAnnotatedString {
+                            withStyle(
+                                SpanStyle(Color.Black )
+                            ){
+//
+                                append(text.text.substring(0,8))
+                            }
+                            withStyle(
+                                SpanStyle(Color.Black)
+                            ){
+                                append(it.password.substring(10))
+                            }
+                        } )
+//                        Text(text = it.password,Modifier.alpha(1f)
+////                        opacity(if(isVisible) 1f else 0f)
+//                        )
+
+                        Text(text = it.expiryDate, Modifier.padding(bottom = 10.dp))
+                    }
+                    Row() {
+                        Icon(imageVector = Icons.Default.Edit,
+                            contentDescription = "Edit Icon",
+                            modifier = Modifier
+                                .clickable {
+                                    vm.updateUser(it, navController)
+                                }
+                                .padding(end = 5.dp))
+                        Icon(imageVector = Icons.Default.Delete,
+                            contentDescription = "Delete Icon",
+                            modifier = Modifier.clickable {
+                                vm.deleteUser(it)
+                            })
+                    }
+
+                }
+
+            }
+
+    }
+}}

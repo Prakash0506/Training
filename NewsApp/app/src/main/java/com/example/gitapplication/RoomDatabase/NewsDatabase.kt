@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [NewsBO::class], version = 1)
 abstract class NewsDatabase : RoomDatabase() {
-    abstract fun credentialDAO() : NewsDAO
+    abstract fun NewsDAO() : NewsDAO
     companion object {
         private var INSTANCE : NewsDatabase? = null
         fun getInstance(context : Context) : NewsDatabase {
