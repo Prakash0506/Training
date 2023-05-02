@@ -12,7 +12,7 @@ class HomeScreenVM(context: Context) :HomeScreenModel() {
 
         newsBO= NewsBO(0,"","","","")
         var db=NewsDatabase.getInstance(context)
-        dao=db.credentialDAO()
+        dao=db.NewsDAO()
         uiList= mutableStateOf(emptyList())
         dbList= mutableListOf()
 
