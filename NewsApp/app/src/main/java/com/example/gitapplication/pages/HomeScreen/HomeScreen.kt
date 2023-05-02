@@ -3,6 +3,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Icon
@@ -89,7 +90,7 @@ fun HomeScreen(navController: NavHostController, vm:HomeScreenVM) {
                 .padding(start = 10.dp, end = 10.dp)
 
         ) {
-            items(12) {news->
+            items(vm.uiList.value) {news->
 
 
                 Row(
@@ -114,52 +115,15 @@ fun HomeScreen(navController: NavHostController, vm:HomeScreenVM) {
 
 
                     Column() {
-                        Text(text = , Modifier.padding(top = 10.dp))
-                        Text(text = it.emailId)
-                        Text(text = it.url)
-                        val text =  TransformedText(
-                            AnnotatedString(
-                                "#".repeat(it.password.length)),
-                            OffsetMapping.Identity
-                        )
+                        Text(text =news.title , Modifier.padding(top = 10.dp))
+                        Text(text = news.description)
+                        Text(text = news.data)
 
-                        Text( buildAnnotatedString {
-                            withStyle(
-                                SpanStyle(Color.Black )
-                            ){
-//
-                                append(text.text.substring(0,8))
-                            }
-                            withStyle(
-                                SpanStyle(Color.Black)
-                            ){
-                                append(it.password.substring(10))
-                            }
-                        } )
-//                        Text(text = it.password,Modifier.alpha(1f)
-////                        opacity(if(isVisible) 1f else 0f)
-//                        )
 
-                        Text(text = it.expiryDate, Modifier.padding(bottom = 10.dp))
-                    }
-                    Row() {
-                        Icon(imageVector = Icons.Default.Edit,
-                            contentDescription = "Edit Icon",
-                            modifier = Modifier
-                                .clickable {
-                                    vm.updateUser(it, navController)
-                                }
-                                .padding(end = 5.dp))
-                        Icon(imageVector = Icons.Default.Delete,
-                            contentDescription = "Delete Icon",
-                            modifier = Modifier.clickable {
-                                vm.deleteUser(it)
-                            })
-                    }
 
                 }
 
             }
 
     }
-}}
+}}}

@@ -13,7 +13,7 @@ data class NewsBO(
 
     var description:String,
 
-    var dataPicker : String,
+    var data : String,
 
     var Category : String,
 
