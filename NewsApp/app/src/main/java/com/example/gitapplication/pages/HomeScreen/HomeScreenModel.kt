@@ -8,6 +8,6 @@ import com.example.gitapplication.RoomDatabase.NewsDAO
 open class HomeScreenModel: ViewModel() {
     lateinit var newsBO: NewsBO
     lateinit var dao: NewsDAO
-    lateinit var allList : MutableState<List<NewsBO>>
-    lateinit var tempList : MutableState<List<NewsBO>>
+    lateinit var uiList : MutableState<List<NewsBO>>
+    lateinit var dbList : MutableList<NewsBO>
 }
