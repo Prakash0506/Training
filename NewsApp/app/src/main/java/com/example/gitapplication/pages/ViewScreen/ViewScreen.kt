@@ -20,6 +20,8 @@ fun ViewScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center
     ) {
         Text(text = "Go Back",
-            modifier = Modifier.clickable { navController.navigate("Create") })
+            modifier = Modifier.clickable {
+                navController.navigate("Create")
+            })
     }
 }
