@@ -17,6 +17,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.gitapplication.pages.HomeScreen.HomeScreenVM
+import com.example.gitapplication.pages.HomeScreen.VMFactory
 import com.example.gitapplication.ui.theme.GitApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -49,9 +50,15 @@ fun ScreenSetup() {
         ) {
         composable("HomeScreen")
         {
-            HomeScreen(navController, VM = viewModel(factory = HomeScreenVM.VMFactory {
-                HomeScreenVM(context)
-            }))
+//            HomeScreen(navController, vm = viewModel(factory = HomeScreenVM.VMFactory {
+//                HomeScreenVM(context)
+//            }))
+
+            HomeScreen(navController = navController, vm = viewModel(
+                factory = VMFactory{
+                    HomeScreenVM(context)
+                }
+            ))
         }
     }
 }
