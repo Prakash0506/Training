@@ -5,9 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
@@ -23,6 +21,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -31,52 +30,88 @@ import com.example.gitapplication.pages.HomeScreen.HomeScreenVM
 
 @Composable
 
-fun HomeScreen(navController: NavHostController, vm:HomeScreenVM) {
+fun HomeScreen(navController: NavHostController, vm: HomeScreenVM) {
     LaunchedEffect(key1 = Unit, block = {
-//        vm.()
+        vm.getAllNewsData()
     })
 
 
     Column(
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxSize().padding(top = 20.dp)
     ) {
 
-        Text(text = "News App", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-
-        Button(onClick = { /*TODO*/ }) {
-            Text(text = "Add News", color = Color.White,
+        Text(
+            text = "News App", fontSize = 20.sp, fontWeight = FontWeight.Bold,
             modifier = Modifier
-                .fillMaxWidth()
-                .background(color = Color.Green))
+                .padding(5.dp)
+                .fillMaxWidth(), textAlign = TextAlign.Center
+        )
+
+        Button(
+            onClick = { /*TODO*/ }, modifier = Modifier.padding(5.dp).fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green,
+            )
+        ) {
+            Text(
+                text = "Add News", color = Color.White,
+
+            )
         }
 
         Row(
-            horizontalArrangement = Arrangement.SpaceEvenly
-                ){
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.fillMaxWidth()
 
-            Button(onClick = { /*TODO*/ },
-            modifier = Modifier.background(color =Color.LightGray )) {
-                Text(text = "Filter by Trending", color = Color.Gray
+        ) {
+
+            Button(
+                onClick = {
+                          vm.filterNews("Trending")
+                },
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
+                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier.width(78.dp)
+            ) {
+                Text(
+                    text = "Filter by Trending", color = Color.Gray, fontSize = 9.sp
                 )
             }
 
-            Button(onClick = { /*TODO*/ },
-                modifier = Modifier.background(color =Color.LightGray )) {
-                Text(text = "Filter by Local", color = Color.Gray
+            Button(
+                onClick = {  vm.filterNews("Local")},
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
+                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier.width(78.dp)
+
+            ) {
+                Text(
+                    text = "Filter by Local", color = Color.Gray, fontSize = 9.sp
                 )
             }
 
-            Button(onClick = { /*TODO*/ },
-                modifier = Modifier.background(color =Color.LightGray )) {
-                Text(text = "Filter by Sports", color = Color.Gray
+            Button(
+                onClick = {  vm.filterNews("Sports") },
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
+                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier.width(78.dp)
+
+            ) {
+                Text(
+                    text = "Filter by Sports", color = Color.Gray, fontSize = 9.sp
                 )
             }
 
-            Button(onClick = { /*TODO*/ },
-                modifier = Modifier.background(color =Color.LightGray )) {
-                Text(text = "Clear Filters", color = Color.Gray
+            Button(
+                onClick = {  vm.filterNews("All") },
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
+                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier.width(78.dp)
+
+            ) {
+                Text(
+                    text = "Clear Filters", color = Color.Gray, fontSize = 9.sp
                 )
             }
         }
@@ -87,10 +122,10 @@ fun HomeScreen(navController: NavHostController, vm:HomeScreenVM) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 10.dp, end = 10.dp)
+                .padding(start = 10.dp, end = 10.dp, top = 30.dp)
 
         ) {
-            items(vm.uiList.value) {news->
+            items(vm.uiList.value) { news ->
 
 
                 Row(
@@ -104,26 +139,22 @@ fun HomeScreen(navController: NavHostController, vm:HomeScreenVM) {
                             shape = RoundedCornerShape(10.dp)
                         )
                         .fillMaxWidth()
-//                        .background(
-////                            if (isCredentialExpired(it.expiryDate))
-////                                Color.Red
-////                            else
-////                                Color.Green
-//                        )
+
                         .padding(15.dp)
                 ) {
 
 
                     Column() {
-                        Text(text =news.title , Modifier.padding(top = 10.dp))
+                        Text(text = "news.title", Modifier.padding(top = 10.dp))
                         Text(text = news.description)
                         Text(text = news.data)
 
 
+                    }
 
                 }
 
             }
-
+        }
     }
-}}}
+}
