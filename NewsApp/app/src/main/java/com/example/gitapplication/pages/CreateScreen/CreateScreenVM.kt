@@ -1,5 +1,6 @@
 package com.example.newsapp.Pages.CreateScreen
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
@@ -7,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CreateScreenVM: CreateScreenModel() {
+class CreateScreenVM(context: Context): CreateScreenModel() {
     fun setTitleNews(titlee: String) {
         try {
             title = titlee
@@ -59,10 +60,7 @@ class CreateScreenVM: CreateScreenModel() {
     fun create(navController: NavHostController) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                withContext(Dispatchers.Main) {
-                    navController.popBackStack()
-                    navController.navigate("View")
-                }
+
 //                val newsBO = NewsBO(
 //                    assetName = assetName,
 //                    assetDesc = assetDesc,
@@ -78,6 +76,10 @@ class CreateScreenVM: CreateScreenModel() {
 //                        navController.navigate("View")
 //                    }
 //                }
+                withContext(Dispatchers.Main) {
+                    navController.popBackStack()
+                    navController.navigate("View")
+                }
             } catch (e: Exception) {
                 Log.d("create exception", e.toString())
             }

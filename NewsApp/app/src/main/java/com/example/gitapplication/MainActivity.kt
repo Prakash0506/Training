@@ -19,6 +19,8 @@ import androidx.navigation.navArgument
 import com.example.gitapplication.pages.HomeScreen.HomeScreenVM
 import com.example.gitapplication.pages.HomeScreen.VMFactory
 import com.example.gitapplication.ui.theme.GitApplicationTheme
+import com.example.newsapp.Pages.CreateScreen.CreateScreen
+import com.example.newsapp.Pages.CreateScreen.CreateScreenVM
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +59,18 @@ fun ScreenSetup() {
             HomeScreen(navController = navController, vm = viewModel(
                 factory = VMFactory{
                     HomeScreenVM(context)
+                }
+            ))
+        }
+        composable("CreateScreen")
+        {
+//            HomeScreen(navController, vm = viewModel(factory = HomeScreenVM.VMFactory {
+//                HomeScreenVM(context)
+//            }))
+
+            CreateScreen(navController = navController, viewModel = viewModel(
+                factory = VMFactory{
+                    CreateScreenVM(context )
                 }
             ))
         }
