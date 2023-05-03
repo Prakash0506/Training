@@ -92,30 +92,31 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
     }
 
 //category
-        OutlinedTextField(
-            value = viewModel.category,
-            colors = TextFieldDefaults.outlinedTextFieldColors(focusedBorderColor = Color(0xFF6066FF)),
-//            placeholder = {
-//                Text(
-//                    text = "enter category", color = Color(0xFFBEBEBF)
-//                )
-//            },
-//            enabled = viewModel.isFieldsEnabled,
-            onValueChange = { category ->
-                viewModel.category = category
-            },
-            label = {
-                    Text(text = "category")
-            },
-            shape = RoundedCornerShape(10.dp), trailingIcon = {
-                Icon(imageVector = Icons.Default.ArrowDropDown,"contentDescription",
-                    Modifier.clickable { viewModel.showMenu = !viewModel.showMenu })
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 27.dp)
+        Box(
 
-        )
+            Modifier
+                .padding(top = 27.dp)
+            .clickable { viewModel.showMenu = !viewModel.showMenu }
+        ) {
+            OutlinedTextField(
+                value = viewModel.category,
+                colors = TextFieldDefaults.outlinedTextFieldColors(focusedBorderColor = Color(0xFF6066FF)),
+                onValueChange = { category ->
+//                viewModel.category = category
+                }, enabled = false,
+                label = {
+                    Text(text = "category")
+                },
+                shape = RoundedCornerShape(10.dp), trailingIcon = {
+                    Icon(imageVector = Icons.Default.ArrowDropDown,"contentDescription",
+                        Modifier.clickable { viewModel.showMenu = !viewModel.showMenu })
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+//                    .padding(top = 27.dp)
+
+            )
+        }
 
         DropdownMenu(
             expanded = viewModel.showMenu,
@@ -130,14 +131,15 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
 
         )
         {
-            var Details = listOf<String>("Trending","Local", "Sports")
-            Details.forEach(){
+
+            var category = Category.values()
+            category.forEach(){
                 DropdownMenuItem(onClick = {
-                      viewModel.category= it
+                      viewModel.category= it.name
                       viewModel.showMenu=false
 
                 }) {
-                    Text(text = it )
+                    Text(text = it.name )
                 }
             }
         }
@@ -153,7 +155,18 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
             Text(text = "Create")
         }
         Text(text = "Go Back",
-            modifier = Modifier.clickable { })
+            modifier = Modifier.clickable {
+                navController.navigate("HomeScreen")
+            })
 
     }
+
+
+}
+
+
+enum class Category(val str: String){
+    Trending("Hello there"),
+    Local("hkjgvcdxcv"),
+    Sports("jkghyfdt")
 }

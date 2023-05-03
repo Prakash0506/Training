@@ -30,6 +30,7 @@ class HomeScreenVM(context: Context) :HomeScreenModel() {
         try {
             when (category) {
                 "Trending" -> {
+                    filterValue = category
                     val trendingNews = dbList.filter {
                         (category == it.Category)
                     }
@@ -37,12 +38,16 @@ class HomeScreenVM(context: Context) :HomeScreenModel() {
 
                 }
                 "Local" -> {
+                    filterValue = category
+
                     val localNews = dbList.filter {
                         (category == it.Category)
                     }
                     uiList.value = localNews
                 }
                 "Sports" -> {
+                    filterValue = category
+
                     val sportsnews = dbList.filter {
                         (category == it.Category)
                     }
@@ -50,6 +55,8 @@ class HomeScreenVM(context: Context) :HomeScreenModel() {
 
                 }
                 "All" -> {
+                    filterValue = category
+
                     getAllNewsData()
                 }
                 else -> {}
