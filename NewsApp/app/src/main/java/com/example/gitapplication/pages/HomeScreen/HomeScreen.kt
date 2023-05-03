@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -26,6 +27,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.gitapplication.R
 import com.example.gitapplication.pages.HomeScreen.HomeScreenVM
 
 @Composable
@@ -43,7 +45,7 @@ fun HomeScreen(navController: NavHostController, vm: HomeScreenVM) {
     ) {
 
         Text(
-            text = "News App", fontSize = 20.sp, fontWeight = FontWeight.Bold,
+            text = stringResource(R.string.title), fontSize = 20.sp, fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .padding(5.dp)
                 .fillMaxWidth(), textAlign = TextAlign.Center
@@ -58,7 +60,7 @@ fun HomeScreen(navController: NavHostController, vm: HomeScreenVM) {
             )
         ) {
             Text(
-                text = "Add News", color = Color.White,
+                text = stringResource(R.string.addNewsTxt), color = Color.White,
 
             )
         }

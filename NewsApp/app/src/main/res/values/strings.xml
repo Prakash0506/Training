@@ -3,4 +3,17 @@
     <string name="sucessfully_posted_message">Successfully Posted !</string>
     <string name="failed_Posting_Message">Posting Failed!</string>
     <string name="navigation_back_to_homeScreen">\" Back to home\"</string>
+    <string name="title">News App</string>
+    <string name="addNewsTxt">Add News</string>
+    <string name="createtitle">CREATE NEWS</string>
+    <string name="titleField">enter title</string>
+    <string name="titleError">enter title</string>
+    <string name="descriptionField">enter description</string>
+    <string name="desError">enter description</string>
+    <string name="dateField">enter date</string>
+    <string name="dateError">enter date</string>
+    <string name="categoryField">category</string>
+    <string name="categiryError">enter category</string>
+    <string name="createBtn">Create</string>
+    <string name="backBtn">Go Back</string>
 </resources>
