@@ -92,56 +92,6 @@ fun HomeScreen(navController: NavHostController, vm: HomeScreenVM) {
                 )
             }
             }
-
-
-//            Button(
-//                onClick = {
-//                          vm.filterNews("Trending")
-//                },
-//                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
-//                shape = RoundedCornerShape(10.dp),
-//                modifier = Modifier.width(78.dp)
-//            ) {
-//                Text(
-//                    text = "Filter by Trending", color = Color.Gray, fontSize = 9.sp
-//                )
-//            }
-//
-//            Button(
-//                onClick = {  vm.filterNews("Local")},
-//                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
-//                shape = RoundedCornerShape(10.dp),
-//                modifier = Modifier.width(78.dp)
-//
-//            ) {
-//                Text(
-//                    text = "Filter by Local", color = Color.Gray, fontSize = 9.sp
-//                )
-//            }
-//
-//            Button(
-//                onClick = {  vm.filterNews("Sports") },
-//                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
-//                shape = RoundedCornerShape(10.dp),
-//                modifier = Modifier.width(78.dp)
-//
-//            ) {
-//                Text(
-//                    text = "Filter by Sports", color = Color.Gray, fontSize = 9.sp
-//                )
-//            }
-//
-//            Button(
-//                onClick = {  vm.filterNews("All") },
-//                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
-//                shape = RoundedCornerShape(10.dp),
-//                modifier = Modifier.width(78.dp)
-//
-//            ) {
-//                Text(
-//                    text = "Clear Filters", color = Color.Gray, fontSize = 9.sp
-//                )
-//            }
         }
 
 

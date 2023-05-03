@@ -84,10 +84,11 @@ class CreateScreenVM(context: Context): CreateScreenModel() {
                 )
 
                 val result = dao.addnewsData(newsBO)
+                Log.d("value","$result")
                 if (result != -1L) {
                     withContext(Dispatchers.Main) {
                         navController.popBackStack()
-                        navController.navigate("HomeScreen")
+                        navController.navigate("ViewScreen?long=$result")
                     }
                     Log.d("result", "NewsList: $result")
                 }
