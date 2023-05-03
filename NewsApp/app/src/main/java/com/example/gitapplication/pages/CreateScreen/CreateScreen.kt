@@ -12,9 +12,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import com.example.gitapplication.R
 
 @Composable
 fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
@@ -26,14 +28,14 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Text(text = "CREATE NEWS")
+        Text(text = stringResource(R.string.createtitle))
         //title
         OutlinedTextField(
             value = viewModel.title,
             colors = TextFieldDefaults.outlinedTextFieldColors(focusedBorderColor = Color(0xFF6066FF)),
             placeholder = {
                 Text(
-                    text = "enter title", color = Color(0xFFBEBEBF)
+                    text = stringResource(R.string.titleField), color = Color(0xFFBEBEBF)
                 )
             },
 //            enabled = viewModel.isFieldsEnabled,
@@ -46,7 +48,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
                 .padding(top = 27.dp)
         )
         if(viewModel.titleCheck){
-            Text(text = "enter title")
+            Text(text = stringResource(R.string.titleError))
         }
 //desc
         OutlinedTextField(
@@ -54,7 +56,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
             colors = TextFieldDefaults.outlinedTextFieldColors(focusedBorderColor = Color(0xFF6066FF)),
             placeholder = {
                 Text(
-                    text = "enter description", color = Color(0xFFBEBEBF)
+                    text = stringResource(R.string.descriptionField), color = Color(0xFFBEBEBF)
                 )
             },
 //            enabled = viewModel.isFieldsEnabled,
@@ -67,7 +69,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
                 .padding(top = 27.dp)
         )
         if(viewModel.descriptionCheck){
-            Text(text = "enter description")
+            Text(text = stringResource(R.string.desError))
         }
 //date
         OutlinedTextField(
@@ -75,7 +77,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
             colors = TextFieldDefaults.outlinedTextFieldColors(focusedBorderColor = Color(0xFF6066FF)),
             placeholder = {
                 Text(
-                    text = "enter date", color = Color(0xFFBEBEBF)
+                    text = stringResource(R.string.dateField), color = Color(0xFFBEBEBF)
                 )
             },
 //            enabled = viewModel.isFieldsEnabled,
@@ -88,7 +90,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
                 .padding(top = 27.dp)
         )
         if(viewModel.dateCheck){
-        Text(text = "enter date")
+        Text(text = stringResource(R.string.dateError))
     }
 
 //category
@@ -105,7 +107,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
 //                viewModel.category = category
                 }, enabled = false,
                 label = {
-                    Text(text = "category")
+                    Text(text = stringResource(R.string.categoryField))
                 },
                 shape = RoundedCornerShape(10.dp), trailingIcon = {
                     Icon(imageVector = Icons.Default.ArrowDropDown,"contentDescription",
@@ -145,19 +147,19 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
         }
 
         if(viewModel.categoryCheck){
-            Text(text = "enter category")
+            Text(text = stringResource(R.string.categiryError))
         }
 
         Button(onClick = {
 //            viewModel.create(navController)
             viewModel.onClick(navController)
         }) {
-            Text(text = "Create")
+            Text(text = stringResource(R.string.createBtn))
         }
 
 
 
-        Text(text = "Go Back",
+        Text(text = stringResource(R.string.backBtn),
             modifier = Modifier.clickable {
                 navController.navigate("HomeScreen")
             })
