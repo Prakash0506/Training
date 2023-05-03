@@ -69,13 +69,13 @@ fun ScreenSetup() {
             ))
         }
 
-        composable("ViewScreen")
-        {
-            ViewScreen(navController = navController, vm = viewModel(
-                factory = VMFactory{
-                    ViewScreenVM()
-                }
-            ))
+        composable("ViewScreen?long={long}", arguments = listOf(navArgument("long") {
+            type = NavType.LongType
+            defaultValue = 0L
+        })) {
+            ViewScreen(navController, vm = viewModel(factory = VMFactory {
+                ViewScreenVM()
+            }), it.arguments?.getLong("long") ?: 0L)
         }
     }
 }
