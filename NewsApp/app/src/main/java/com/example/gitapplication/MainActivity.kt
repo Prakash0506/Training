@@ -18,9 +18,11 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.gitapplication.pages.HomeScreen.HomeScreenVM
 import com.example.gitapplication.pages.HomeScreen.VMFactory
+import com.example.gitapplication.pages.ViewScreen.ViewScreenVM
 import com.example.gitapplication.ui.theme.GitApplicationTheme
 import com.example.newsapp.Pages.CreateScreen.CreateScreen
 import com.example.newsapp.Pages.CreateScreen.CreateScreenVM
+import com.example.newsapp.Pages.ViewScreen.ViewScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,10 +54,6 @@ fun ScreenSetup() {
         ) {
         composable("HomeScreen")
         {
-//            HomeScreen(navController, vm = viewModel(factory = HomeScreenVM.VMFactory {
-//                HomeScreenVM(context)
-//            }))
-
             HomeScreen(navController = navController, vm = viewModel(
                 factory = VMFactory{
                     HomeScreenVM(context)
@@ -64,13 +62,18 @@ fun ScreenSetup() {
         }
         composable("CreateScreen")
         {
-//            HomeScreen(navController, vm = viewModel(factory = HomeScreenVM.VMFactory {
-//                HomeScreenVM(context)
-//            }))
-
             CreateScreen(navController = navController, viewModel = viewModel(
                 factory = VMFactory{
                     CreateScreenVM(context )
+                }
+            ))
+        }
+
+        composable("ViewScreen")
+        {
+            ViewScreen(navController = navController, vm = viewModel(
+                factory = VMFactory{
+                    ViewScreenVM()
                 }
             ))
         }

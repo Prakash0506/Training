@@ -50,7 +50,10 @@ fun HomeScreen(navController: NavHostController, vm: HomeScreenVM) {
         )
 
         Button(
-            onClick = { /*TODO*/ }, modifier = Modifier.padding(5.dp).fillMaxWidth(),
+            onClick = {
+                navController.navigate("CreateScreen")
+
+            }, modifier = Modifier.padding(5.dp).fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green,
             )
         ) {
@@ -145,7 +148,7 @@ fun HomeScreen(navController: NavHostController, vm: HomeScreenVM) {
 
 
                     Column() {
-                        Text(text = "news.title", Modifier.padding(top = 10.dp))
+                        Text(text = news.title, fontWeight = FontWeight.Bold, fontSize = 20.sp)
                         Text(text = news.description)
                         Text(text = news.data)
 
