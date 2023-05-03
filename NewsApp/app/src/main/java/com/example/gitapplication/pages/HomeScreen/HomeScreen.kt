@@ -69,54 +69,79 @@ fun HomeScreen(navController: NavHostController, vm: HomeScreenVM) {
 
         ) {
 
-            Button(
+            val filterCategory = FilterCategory.values()
+            filterCategory.forEach {filterKey->
+                Button(
                 onClick = {
-                          vm.filterNews("Trending")
+                          vm.filterNews(filterKey.name)
                 },
-                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
+                colors =  ButtonDefaults.buttonColors(
+                    backgroundColor =if (vm.filterValue == filterKey.name) {
+                        Color.Cyan
+
+                    }
+                else{
+                    Color.LightGray
+                    }
+                ),
                 shape = RoundedCornerShape(10.dp),
                 modifier = Modifier.width(78.dp)
             ) {
                 Text(
-                    text = "Filter by Trending", color = Color.Gray, fontSize = 9.sp
+                    text = filterKey.str, color = Color.Gray, fontSize = 9.sp
                 )
             }
-
-            Button(
-                onClick = {  vm.filterNews("Local")},
-                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier.width(78.dp)
-
-            ) {
-                Text(
-                    text = "Filter by Local", color = Color.Gray, fontSize = 9.sp
-                )
             }
 
-            Button(
-                onClick = {  vm.filterNews("Sports") },
-                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier.width(78.dp)
 
-            ) {
-                Text(
-                    text = "Filter by Sports", color = Color.Gray, fontSize = 9.sp
-                )
-            }
-
-            Button(
-                onClick = {  vm.filterNews("All") },
-                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier.width(78.dp)
-
-            ) {
-                Text(
-                    text = "Clear Filters", color = Color.Gray, fontSize = 9.sp
-                )
-            }
+//            Button(
+//                onClick = {
+//                          vm.filterNews("Trending")
+//                },
+//                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
+//                shape = RoundedCornerShape(10.dp),
+//                modifier = Modifier.width(78.dp)
+//            ) {
+//                Text(
+//                    text = "Filter by Trending", color = Color.Gray, fontSize = 9.sp
+//                )
+//            }
+//
+//            Button(
+//                onClick = {  vm.filterNews("Local")},
+//                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
+//                shape = RoundedCornerShape(10.dp),
+//                modifier = Modifier.width(78.dp)
+//
+//            ) {
+//                Text(
+//                    text = "Filter by Local", color = Color.Gray, fontSize = 9.sp
+//                )
+//            }
+//
+//            Button(
+//                onClick = {  vm.filterNews("Sports") },
+//                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
+//                shape = RoundedCornerShape(10.dp),
+//                modifier = Modifier.width(78.dp)
+//
+//            ) {
+//                Text(
+//                    text = "Filter by Sports", color = Color.Gray, fontSize = 9.sp
+//                )
+//            }
+//
+//            Button(
+//                onClick = {  vm.filterNews("All") },
+//                colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray),
+//                shape = RoundedCornerShape(10.dp),
+//                modifier = Modifier.width(78.dp)
+//
+//            ) {
+//                Text(
+//                    text = "Clear Filters", color = Color.Gray, fontSize = 9.sp
+//                )
+//            }
         }
 
 
@@ -160,4 +185,11 @@ fun HomeScreen(navController: NavHostController, vm: HomeScreenVM) {
             }
         }
     }
+}
+
+enum class FilterCategory(val str : String){
+    Trending("Filter by Trending"),
+    Local("Filter by Local"),
+    Sports("Filter by Sports"),
+    All("Clear Filters")
 }
