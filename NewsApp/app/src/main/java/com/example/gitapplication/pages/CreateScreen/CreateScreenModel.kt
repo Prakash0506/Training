@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.example.gitapplication.RoomDatabase.NewsDAO
 
 open class CreateScreenModel:ViewModel() {
 
@@ -20,6 +21,11 @@ open class CreateScreenModel:ViewModel() {
     var descriptionCheck by mutableStateOf(false)
 
     var dateCheck by mutableStateOf(false)
+
+    lateinit var dao: NewsDAO
+
+    var showMenu:Boolean by mutableStateOf(false)
+
 
     var categoryCheck by mutableStateOf(false)
 

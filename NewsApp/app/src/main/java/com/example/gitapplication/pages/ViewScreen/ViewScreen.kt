@@ -10,9 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.gitapplication.pages.ViewScreen.ViewScreenVM
 
 @Composable
-fun ViewScreen(navController: NavController) {
+fun ViewScreen(navController: NavController, vm:ViewScreenVM) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -21,7 +22,7 @@ fun ViewScreen(navController: NavController) {
     ) {
         Text(text = "Go Back",
             modifier = Modifier.clickable {
-                navController.navigate("Create")
+                vm.navigateToHome(navController)
             })
     }
 }

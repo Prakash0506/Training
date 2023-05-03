@@ -63,11 +63,20 @@ class HomeScreenVM(context: Context) :HomeScreenModel() {
     }}
 
     fun getAllNewsData(){
-        viewModelScope.launch(Dispatchers.IO) {
-            dao.getAllNews()
+        viewModelScope.launch ( Dispatchers.IO ){
+            try {
+                var result = dao.getAllNews()
+                Log.d("dataBo", "getAllNews: $result")
+                if (result != null) {
 
+                    uiList.value = result
+                    dbList = uiList.value.toMutableList()
+                }
+            }
+            catch (e: Exception) {
+                Log.d("exception", "exception :$e ")
+            }
         }
-
     }
 
 }
