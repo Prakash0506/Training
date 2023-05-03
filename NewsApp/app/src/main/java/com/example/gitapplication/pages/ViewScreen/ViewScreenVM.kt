@@ -8,6 +8,4 @@ class ViewScreenVM() : ViewScreenModel(){
     fun navigateToHome(navController : NavController){
         navController.navigate("HomeScreen")
     }
-
-
 }
