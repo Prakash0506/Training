@@ -12,23 +12,8 @@ import com.example.gitapplication.RoomDatabase.NewsBO
 interface NewsDAO {
 
     @Query("SELECT * FROM NewsData ")
-    suspend fun getAllNews():List<NewsBO>
+    suspend fun getAllNews(): List<NewsBO>
 
     @Insert(onConflict = REPLACE)
-    suspend fun addnewsData(data: NewsBO) : Long
-
-//    @Delete
-//    suspend fun deleteUserCredential(data: NewsBO): Int
-//
-//    @Update
-////    @Query("UPDATE UserCredential SET  WHERE id = :id")
-//    suspend fun updateCredential(data : NewsBO) : Int
-//
-//    @Query("SELECT * FROM NewsData WHERE id == :primaryId")
-//    suspend fun getUserByID(primaryId: Int) : NewsBO
-//
-//    @Query("SELECT * FROM NewsData WHERE title LIKE '%' || :key || '%'  or " +
-//            "emailId  LIKE '%' || :key || '%' or url  LIKE '%' || :key || '%' ")
-//    suspend fun searchUserByUserId(key: String) : List<NewsBO>
+    suspend fun addnewsData(data: NewsBO): Long
 }
-//or emailId = :key or url = :key

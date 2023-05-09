@@ -21,7 +21,7 @@ fun ViewScreen(navController: NavController, vm:ViewScreenVM,returnValue:Long?) 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .width(20.dp)//checking
+            .width(20.dp)//checkingg
             .padding(start = 20.dp, end = 20.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
