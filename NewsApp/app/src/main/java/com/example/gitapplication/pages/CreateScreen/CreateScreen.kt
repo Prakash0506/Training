@@ -3,50 +3,37 @@ package com.example.newsapp.Pages.CreateScreen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-//import androidx.compose.foundation.layout.ColumnScopeInstance.weight
-//import androidx.compose.foundation.layout.RowScopeInstance.weight
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.InputMode.Companion.Keyboard
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.LocalView
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.example.gitapplication.R
-import kotlinx.coroutines.launch
 
 @Composable
 fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
-
-
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(start = 20.dp, end = 20.dp)
-            .verticalScroll( rememberScrollState()),
+            .padding(start = 20.dp, end = 20.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Text(text = stringResource(R.string.createtitle))
+        Text(text = "CREATE NEWS")
         //title
         OutlinedTextField(
             value = viewModel.title,
             colors = TextFieldDefaults.outlinedTextFieldColors(focusedBorderColor = Color(0xFF6066FF)),
             placeholder = {
                 Text(
-                    text = stringResource(R.string.titleField), color = Color(0xFFBEBEBF)
+                    text = "enter title", color = Color(0xFFBEBEBF)
                 )
             },
 //            enabled = viewModel.isFieldsEnabled,
@@ -59,7 +46,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
                 .padding(top = 27.dp)
         )
         if(viewModel.titleCheck){
-            Text(text = stringResource(R.string.titleError))
+            Text(text = "enter title")
         }
 //desc
         OutlinedTextField(
@@ -67,7 +54,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
             colors = TextFieldDefaults.outlinedTextFieldColors(focusedBorderColor = Color(0xFF6066FF)),
             placeholder = {
                 Text(
-                    text = stringResource(R.string.descriptionField), color = Color(0xFFBEBEBF)
+                    text = "enter description", color = Color(0xFFBEBEBF)
                 )
             },
 //            enabled = viewModel.isFieldsEnabled,
@@ -80,7 +67,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
                 .padding(top = 27.dp)
         )
         if(viewModel.descriptionCheck){
-            Text(text = stringResource(R.string.desError))
+            Text(text = "enter description")
         }
 //date
         OutlinedTextField(
@@ -88,7 +75,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
             colors = TextFieldDefaults.outlinedTextFieldColors(focusedBorderColor = Color(0xFF6066FF)),
             placeholder = {
                 Text(
-                    text = stringResource(R.string.dateField), color = Color(0xFFBEBEBF)
+                    text = "enter date", color = Color(0xFFBEBEBF)
                 )
             },
 //            enabled = viewModel.isFieldsEnabled,
@@ -101,7 +88,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
                 .padding(top = 27.dp)
         )
         if(viewModel.dateCheck){
-        Text(text = stringResource(R.string.dateError))
+        Text(text = "enter date")
     }
 
 //category
@@ -118,7 +105,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
 //                viewModel.category = category
                 }, enabled = false,
                 label = {
-                    Text(text = stringResource(R.string.categoryField))
+                    Text(text = "category")
                 },
                 shape = RoundedCornerShape(10.dp), trailingIcon = {
                     Icon(imageVector = Icons.Default.ArrowDropDown,"contentDescription",
@@ -158,18 +145,16 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
         }
 
         if(viewModel.categoryCheck){
-            Text(text = stringResource(R.string.categiryError))
+            Text(text = "enter category")
         }
 
         Button(onClick = {
+//            viewModel.create(navController)
             viewModel.onClick(navController)
         }) {
-            Text(text = stringResource(R.string.createBtn))
+            Text(text = "Create")
         }
-
-
-
-        Text(text = stringResource(R.string.backBtn),
+        Text(text = "Go Back",
             modifier = Modifier.clickable {
                 navController.navigate("HomeScreen")
             })
