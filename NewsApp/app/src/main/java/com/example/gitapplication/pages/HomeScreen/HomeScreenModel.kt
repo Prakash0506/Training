@@ -8,9 +8,9 @@ import androidx.lifecycle.ViewModel
 import com.example.gitapplication.RoomDatabase.NewsBO
 import com.example.gitapplication.RoomDatabase.NewsDAO
 
-open class HomeScreenModel: ViewModel() {
+open class HomeScreenModel : ViewModel() {
     lateinit var dao: NewsDAO
-    lateinit var uiList : MutableState<List<NewsBO>>
-    lateinit var dbList : MutableList<NewsBO>
-    var filterValue:String by mutableStateOf("")
+    lateinit var uiList: MutableState<List<NewsBO>>
+    lateinit var dbList: MutableList<NewsBO>
+    var filterValue: String by mutableStateOf("")
 }

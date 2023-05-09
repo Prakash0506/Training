@@ -41,58 +41,62 @@ fun HomeScreen(navController: NavHostController, vm: HomeScreenVM) {
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize().padding(top = 20.dp)
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(top = 20.dp)
     ) {
 
         Text(
-            text = stringResource(R.string.title), fontSize = 20.sp, fontWeight = FontWeight.Bold,
+            text = stringResource(R.string.title),
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .padding(5.dp)
-                .fillMaxWidth(), textAlign = TextAlign.Center
+                .fillMaxWidth(),
+            textAlign = TextAlign.Center
         )
 
         Button(
             onClick = {
-               vm.navigateToCreateScreen(navController)
+                vm.navigateToCreateScreen(navController)
 
-            }, modifier = Modifier.padding(5.dp).fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green,
+            },
+            modifier = Modifier
+                .padding(5.dp)
+                .fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = Color.Green,
             )
         ) {
             Text(
                 text = stringResource(R.string.addNewsTxt), color = Color.White,
 
-            )
+                )
         }
 
         Row(
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            modifier = Modifier.fillMaxWidth()
+            horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()
 
         ) {
 
             val filterCategory = FilterCategory.values()
-            filterCategory.forEach {filterKey->
+            filterCategory.forEach { filterKey ->
                 Button(
-                onClick = {
-                          vm.filterNews(filterKey.name)
-                },
-                colors =  ButtonDefaults.buttonColors(
-                    backgroundColor =if (vm.filterValue == filterKey.name) {
-                        Color.Cyan
+                    onClick = {
+                        vm.filterNews(filterKey.name)
+                    }, colors = ButtonDefaults.buttonColors(
+                        backgroundColor = if (vm.filterValue == filterKey.name) {
+                            Color.Cyan
 
-                    }
-                else{
-                    Color.LightGray
-                    }
-                ),
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier.width(78.dp)
-            ) {
-                Text(
-                    text = filterKey.str, color = Color.Gray, fontSize = 9.sp
-                )
-            }
+                        } else {
+                            Color.LightGray
+                        }
+                    ), shape = RoundedCornerShape(10.dp), modifier = Modifier.width(78.dp)
+                ) {
+                    Text(
+                        text = filterKey.str, color = Color.Gray, fontSize = 9.sp
+                    )
+                }
             }
         }
 
@@ -114,9 +118,7 @@ fun HomeScreen(navController: NavHostController, vm: HomeScreenVM) {
                         .padding(10.dp)
                         .clip(RoundedCornerShape(10.dp))
                         .border(
-                            width = 1.dp,
-                            color = Color.Black,
-                            shape = RoundedCornerShape(10.dp)
+                            width = 1.dp, color = Color.Black, shape = RoundedCornerShape(10.dp)
                         )
                         .fillMaxWidth()
 
@@ -139,9 +141,6 @@ fun HomeScreen(navController: NavHostController, vm: HomeScreenVM) {
     }
 }
 
-enum class FilterCategory(val str : String){
-    Trending("Filter by Trending"),
-    Local("Filter by Local"),
-    Sports("Filter by Sports"),
-    All("Clear Filters")
+enum class FilterCategory(val str: String) {
+    Trending("Filter by Trending"), Local("Filter by Local"), Sports("Filter by Sports"), All("Clear Filters")
 }

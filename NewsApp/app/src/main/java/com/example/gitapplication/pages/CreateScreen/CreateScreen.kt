@@ -24,7 +24,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
         modifier = Modifier
             .fillMaxSize()
             .padding(start = 20.dp, end = 20.dp)
-            .verticalScroll(rememberScrollState(),enabled = true),
+            .verticalScroll(rememberScrollState(), enabled = true),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -48,7 +48,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
                 .fillMaxWidth()
                 .padding(top = 27.dp)
         )
-        if(viewModel.titleCheck){
+        if (viewModel.titleCheck) {
             Text(text = "enter title")
         }
 //desc
@@ -69,7 +69,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
                 .fillMaxWidth()
                 .padding(top = 27.dp)
         )
-        if(viewModel.descriptionCheck){
+        if (viewModel.descriptionCheck) {
             Text(text = "enter description")
         }
 //date
@@ -90,20 +90,24 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
                 .fillMaxWidth()
                 .padding(top = 27.dp)
         )
-        if(viewModel.dateCheck){
-        Text(text = "enter date")
-    }
+        if (viewModel.dateCheck) {
+            Text(text = "enter date")
+        }
 
 //category
         Box(
 
             Modifier
                 .padding(top = 27.dp)
-            .clickable { viewModel.showMenu = !viewModel.showMenu }
+                .clickable { viewModel.showMenu = !viewModel.showMenu }
         ) {
             OutlinedTextField(
                 value = viewModel.category,
-                colors = TextFieldDefaults.outlinedTextFieldColors(focusedBorderColor = Color(0xFF6066FF)),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color(
+                        0xFF6066FF
+                    )
+                ),
                 onValueChange = { category ->
 //                viewModel.category = category
                 }, enabled = false,
@@ -111,7 +115,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
                     Text(text = "category")
                 },
                 shape = RoundedCornerShape(10.dp), trailingIcon = {
-                    Icon(imageVector = Icons.Default.ArrowDropDown,"contentDescription",
+                    Icon(imageVector = Icons.Default.ArrowDropDown, "contentDescription",
                         Modifier.clickable { viewModel.showMenu = !viewModel.showMenu })
                 },
                 modifier = Modifier
@@ -136,26 +140,25 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
         {
 
             var category = Category.values()
-            category.forEach(){
+            category.forEach() {
                 DropdownMenuItem(onClick = {
-                      viewModel.category= it.name
-                      viewModel.showMenu=false
+                    viewModel.category = it.name
+                    viewModel.showMenu = false
 
                 }) {
-                    Text(text = it.name )
+                    Text(text = it.name)
                 }
             }
         }
 
-        if(viewModel.categoryCheck){
+        if (viewModel.categoryCheck) {
             Text(text = "enter category")
         }
 
         Button(onClick = {
 //            viewModel.create(navController)
             viewModel.onClick(navController)
-        }
-        , modifier = Modifier.padding(top = 27.dp)) {
+        }, modifier = Modifier.padding(top = 27.dp)) {
             Text(text = "Create")
         }
         Text(text = "Go Back",
@@ -170,7 +173,7 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
 }
 
 
-enum class Category(val str: String){
+enum class Category(val str: String) {
     Trending("Hello there"),
     Local("hkjgvcdxcv"),
     Sports("jkghyfdt")

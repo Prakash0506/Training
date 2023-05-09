@@ -12,67 +12,66 @@ import com.example.gitapplication.RoomDatabase.NewsDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HomeScreenVM(context: Context) :HomeScreenModel() {
+class HomeScreenVM(context: Context) : HomeScreenModel() {
     init {
 
-        var db=NewsDatabase.getInstance(context)
-        dao=db.NewsDAO()
-        uiList= mutableStateOf(emptyList())
-        dbList= mutableListOf()
+        var db = NewsDatabase.getInstance(context)
+        dao = db.NewsDAO()
+        uiList = mutableStateOf(emptyList())
+        dbList = mutableListOf()
 
     }
 
 
-    fun navigateToCreateScreen(navController:NavController){
+    fun navigateToCreateScreen(navController: NavController) {
         navController.navigate("CreateScreen")
     }
 
-    fun filterNews(category:String) {
+    fun filterNews(category: String) {
         viewModelScope.launch(Dispatchers.IO) {
-        try {
-            when (category) {
-                "Trending" -> {
-                    filterValue = category
-                    val trendingNews = dbList.filter {
-                        (category == it.Category)
+            try {
+                when (category) {
+                    "Trending" -> {
+                        filterValue = category
+                        val trendingNews = dbList.filter {
+                            (category == it.Category)
+                        }
+                        uiList.value = trendingNews
+
                     }
-                    uiList.value = trendingNews
+                    "Local" -> {
+                        filterValue = category
 
-                }
-                "Local" -> {
-                    filterValue = category
-
-                    val localNews = dbList.filter {
-                        (category == it.Category)
+                        val localNews = dbList.filter {
+                            (category == it.Category)
+                        }
+                        uiList.value = localNews
                     }
-                    uiList.value = localNews
-                }
-                "Sports" -> {
-                    filterValue = category
+                    "Sports" -> {
+                        filterValue = category
 
-                    val sportsnews = dbList.filter {
-                        (category == it.Category)
+                        val sportsnews = dbList.filter {
+                            (category == it.Category)
+                        }
+                        uiList.value = sportsnews
+
                     }
-                    uiList.value = sportsnews
+                    "All" -> {
+                        filterValue = category
 
+                        getAllNewsData()
+                    }
+                    else -> {}
                 }
-                "All" -> {
-                    filterValue = category
-
-                    getAllNewsData()
-                }
-                else -> {}
+            } catch (e: Exception) {
+                Log.d("exception", "filterNews: $e")
             }
+
         }
+    }
 
-        catch(e:Exception){
-            Log.d("exception", "filterNews: $e")
-        }
-
-    }}
-
-    fun getAllNewsData(){
-        viewModelScope.launch ( Dispatchers.IO ){
+    fun getAllNewsData() {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
                 var result = dao.getAllNews()
                 Log.d("dataBo", "getAllNews: $result")
@@ -81,8 +80,7 @@ class HomeScreenVM(context: Context) :HomeScreenModel() {
                     uiList.value = result
                     dbList = uiList.value.toMutableList()
                 }
-            }
-            catch (e: Exception) {
+            } catch (e: Exception) {
                 Log.d("exception", "exception :$e ")
             }
         }
@@ -90,9 +88,9 @@ class HomeScreenVM(context: Context) :HomeScreenModel() {
 
 }
 
-class VMFactory<T>(private val factory: () -> T): ViewModelProvider.NewInstanceFactory() {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            val newT = factory()
-            return newT as T
-        }
+class VMFactory<T>(private val factory: () -> T) : ViewModelProvider.NewInstanceFactory() {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        val newT = factory()
+        return newT as T
     }
+}

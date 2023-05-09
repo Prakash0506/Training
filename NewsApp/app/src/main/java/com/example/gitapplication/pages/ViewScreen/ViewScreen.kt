@@ -17,28 +17,30 @@ import com.example.gitapplication.R
 import com.example.gitapplication.pages.ViewScreen.ViewScreenVM
 
 @Composable
-fun ViewScreen(navController: NavController, vm:ViewScreenVM,returnValue:Long?) {
+fun ViewScreen(navController: NavController, vm: ViewScreenVM, returnValue: Long?) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(start = 20.dp, end = 20.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-    ) {Log.d("tag","$returnValue")
-        Text( text =
-        if (returnValue!=0L){
-                    stringResource(R.string.sucessfully_posted_message)
-                }
-        else{
-            stringResource(R.string.failed_Posting_Message)
-        } , fontSize = 35.sp,modifier=Modifier.padding(bottom = 15.dp)
+    ) {
+        Log.d("tag", "$returnValue")
+        Text(
+            text =
+            if (returnValue != 0L) {
+                stringResource(R.string.sucessfully_posted_message)
+            } else {
+                stringResource(R.string.failed_Posting_Message)
+            }, fontSize = 35.sp, modifier = Modifier.padding(bottom = 15.dp)
 
         )
 
-        Button(onClick = {
-            vm.navigateToHome(navController)
-        },
-            colors=ButtonDefaults.buttonColors(backgroundColor = Color.Green)
+        Button(
+            onClick = {
+                vm.navigateToHome(navController)
+            },
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green)
         ) {
             Text(
                 text = stringResource(R.string.navigation_back_to_homeScreen),
