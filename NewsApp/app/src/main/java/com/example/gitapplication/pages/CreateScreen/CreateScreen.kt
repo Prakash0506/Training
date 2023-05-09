@@ -3,7 +3,9 @@ package com.example.newsapp.Pages.CreateScreen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -21,7 +23,8 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(start = 20.dp, end = 20.dp),
+            .padding(start = 20.dp, end = 20.dp)
+            .verticalScroll(rememberScrollState(),enabled = true),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -151,13 +154,15 @@ fun CreateScreen(navController: NavHostController, viewModel: CreateScreenVM) {
         Button(onClick = {
 //            viewModel.create(navController)
             viewModel.onClick(navController)
-        }) {
+        }
+        , modifier = Modifier.padding(top = 27.dp)) {
             Text(text = "Create")
         }
         Text(text = "Go Back",
             modifier = Modifier.clickable {
                 navController.navigate("HomeScreen")
             })
+
 
     }
 

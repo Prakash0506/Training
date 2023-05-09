@@ -53,7 +53,7 @@ fun HomeScreen(navController: NavHostController, vm: HomeScreenVM) {
 
         Button(
             onClick = {
-                navController.navigate("CreateScreen")
+               vm.navigateToCreateScreen(navController)
 
             }, modifier = Modifier.padding(5.dp).fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green,
