@@ -5,17 +5,20 @@ import android.util.Log
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import com.example.gitapplication.RoomDatabase.NewsBO
+import com.example.gitapplication.RoomDatabase.NewsDAO
 import com.example.gitapplication.RoomDatabase.NewsDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CreateScreenVM(context: Context): CreateScreenModel() {
+class CreateScreenVM(
+    context: Context,
+    dao: NewsDAO = NewsDatabase.getInstance(context).NewsDAO(),
+): CreateScreenModel() {
 
     init {
         try {
-            val db = NewsDatabase.getInstance(context)
-            dao = db.NewsDAO()
+            this.dao = dao
         } catch (e: Exception) {
             Log.d("init", "init:$e ")
         }
@@ -50,9 +53,7 @@ class CreateScreenVM(context: Context): CreateScreenModel() {
 
     fun setNewsCategory(cat: String) {
         try {
-
             showMenu = true
-
             category = cat
             categoryCheck = false
         } catch (e: Exception) {
