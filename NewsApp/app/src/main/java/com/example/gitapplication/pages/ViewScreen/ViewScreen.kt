@@ -1,11 +1,7 @@
 package com.example.newsapp.Pages.ViewScreen
 
 import android.util.Log
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
@@ -25,6 +21,7 @@ fun ViewScreen(navController: NavController, vm:ViewScreenVM,returnValue:Long?) 
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .width(20.dp)//checking
             .padding(start = 20.dp, end = 20.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
