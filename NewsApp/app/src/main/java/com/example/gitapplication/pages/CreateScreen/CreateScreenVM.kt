@@ -33,6 +33,8 @@ class CreateScreenVM(
         }
     }
 
+
+    //filter
     fun setDescriptionNews(des: String) {
         try {
             description = des
