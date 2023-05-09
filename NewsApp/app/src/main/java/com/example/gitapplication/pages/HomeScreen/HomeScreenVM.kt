@@ -8,15 +8,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.gitapplication.RoomDatabase.NewsBO
+import com.example.gitapplication.RoomDatabase.NewsDAO
 import com.example.gitapplication.RoomDatabase.NewsDatabase
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HomeScreenVM(context: Context) : HomeScreenModel() {
+class HomeScreenVM(
+    context: Context,
+    dao: NewsDAO = NewsDatabase.getInstance(context).NewsDAO(),
+    private val dispatchers: CoroutineDispatcher = Dispatchers.IO
+) :HomeScreenModel() {
     init {
-
-        var db = NewsDatabase.getInstance(context)
-        dao = db.NewsDAO()
+        this.dao=dao
         uiList = mutableStateOf(emptyList())
         dbList = mutableListOf()
 
