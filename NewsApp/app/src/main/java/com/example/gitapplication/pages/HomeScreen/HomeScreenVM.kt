@@ -7,78 +7,77 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.gitapplication.RoomDatabase.NewsBO
+import com.example.gitapplication.RoomDatabase.NewsDAO
 import com.example.gitapplication.RoomDatabase.NewsDatabase
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HomeScreenVM(context: Context) :HomeScreenModel() {
+class HomeScreenVM(
+    context: Context,
+    dao: NewsDAO = NewsDatabase.getInstance(context).NewsDAO(),
+    private val dispatchers: CoroutineDispatcher = Dispatchers.IO
+) :HomeScreenModel() {
     init {
-
-        newsBO= NewsBO(0,"","","","")
-        var db=NewsDatabase.getInstance(context)
-        dao=db.NewsDAO()
+        this.dao=dao
         uiList= mutableStateOf(emptyList())
         dbList= mutableListOf()
 
     }
-     fun addNews(){
 
-     }
 
     fun filterNews(category:String) {
-        viewModelScope.launch(Dispatchers.IO) {
-        try {
-            when (category) {
-                "Trending" -> {
-                    filterValue = category
-                    val trendingNews = dbList.filter {
-                        (category == it.Category)
+        viewModelScope.launch(dispatchers) {
+            try {
+                when (category) {
+                    "Trending" -> {
+                        filterValue = category
+                        val trendingNews = dbList.filter {
+                            (category == it.Category)
+                        }
+                        uiList.value = trendingNews
+
                     }
-                    uiList.value = trendingNews
+                    "Local" -> {
+                        filterValue = category
 
-                }
-                "Local" -> {
-                    filterValue = category
-
-                    val localNews = dbList.filter {
-                        (category == it.Category)
+                        val localNews = dbList.filter {
+                            (category == it.Category)
+                        }
+                        uiList.value = localNews
                     }
-                    uiList.value = localNews
-                }
-                "Sports" -> {
-                    filterValue = category
+                    "Sports" -> {
+                        filterValue = category
 
-                    val sportsnews = dbList.filter {
-                        (category == it.Category)
+                        val sportsnews = dbList.filter {
+                            (category == it.Category)
+                        }
+                        uiList.value = sportsnews
+
                     }
-                    uiList.value = sportsnews
-
+                    "All" -> {
+                        filterValue = category
+                        getAllNewsData()
+                    }
+                    else -> {}
                 }
-                "All" -> {
-                    filterValue = category
-
-                    getAllNewsData()
-                }
-                else -> {}
+            }
+            catch(e:Exception){
+                Log.d("exception", "filterNews: $e")
             }
         }
-
-        catch(e:Exception){
-            Log.d("exception", "filterNews: $e")
-        }
-
-    }}
+    }
 
     fun getAllNewsData(){
-        viewModelScope.launch ( Dispatchers.IO ){
+        viewModelScope.launch (dispatchers){
             try {
                 var result = dao.getAllNews()
-                Log.d("dataBo", "getAllNews: $result")
-                if (result != null) {
+//                Log.d("dataBo", "getAllNews: $result")
+//                if (result != null) {
 
                     uiList.value = result
                     dbList = uiList.value.toMutableList()
-                }
+//                }
             }
             catch (e: Exception) {
                 Log.d("exception", "exception :$e ")
